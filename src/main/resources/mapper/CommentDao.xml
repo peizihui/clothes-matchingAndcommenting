@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.clothes.dao.CommentDao">
+    <insert id="insertComment">
+        INSERT INTO t_comment (n_collect_id, n_user_id, n_collect_time)
+        VALUES (#{collectId}, #{userId}, #{collectTime})
+    </insert>
+    <delete id="deleteComment">
+        DELETE FROM t_comment WHERE n_id in #{id}
+    </delete>
+    <select id="queryCommentForPage" resultType="Comment">
+    	SELECT *
+        FROM t_comment
+        limit #{offset}, #{limit}
+    </select>
+</mapper>

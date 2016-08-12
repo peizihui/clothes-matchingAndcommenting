@@ -16,11 +16,17 @@ public class ClothDaoTest {
 	private ClothDao dao;
 	
 	@Test
-	public void insertUser(){
+	public void insertUser() {
 		Clothes c = new Clothes();
 		c.setClothIcon("c:/desc/1.png");
-		c.setDesc("服装图片");
+		c.setDescription("服装图片");
 		c.setCreateTime(System.currentTimeMillis());
 		dao.insertCloth(c);
+	}
+	
+	@Test
+	public void selectUser() {
+		Clothes queryCloth = dao.queryCloth(1l);
+		System.out.println(queryCloth.getClothIcon());
 	}
 }

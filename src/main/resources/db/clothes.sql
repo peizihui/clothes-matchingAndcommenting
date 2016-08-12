@@ -111,3 +111,9 @@ CREATE TABLE IF NOT EXISTS `user` (
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 ALTER TABLE `t_clothing`
 	CHANGE COLUMN `c_cloth_icon` `c_cloth_icon` VARCHAR(50) NOT NULL DEFAULT '0' COMMENT '服装图标' AFTER `n_id`;
+	
+ALTER TABLE `t_comment`
+	ADD COLUMN `n_createTime` BIGINT(20) NOT NULL DEFAULT '0' COMMENT '创建时间' AFTER `n_from_id`;
+
+ALTER TABLE `t_reply`
+	ADD COLUMN `n_createTime` BIGINT(20) NOT NULL DEFAULT '0' COMMENT '创建时间' AFTER `n_to_uid`;

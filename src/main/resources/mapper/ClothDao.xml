@@ -17,12 +17,12 @@
           WHERE n_id = #{id}
     </update>
     <select id="queryCloth" resultType="Clothes">
-        SELECT *
+        SELECT n_id AS id, c_cloth_icon AS clothIcon, c_desc AS description, n_createTime AS createTime
         FROM t_clothing
         WHERE n_id = #{id}
     </select>
     <select id="queryForPage" resultType="User">
-        SELECT *
+        SELECT n_id AS id, c_cloth_icon AS clothIcon, c_desc AS description, n_createTime AS createTime
         FROM t_clothing
         limit #{offset}, #{limit}
     </select>

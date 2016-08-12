@@ -41,7 +41,7 @@ public class UserDAOTest {
 
     @Test
     public void queryUserByUserName() throws Exception {
-        User user = userDAO.queryUserByUserName("userName");
+        User user = userDAO.queryUserByUserName("leehom");
         System.out.println("!!!!" + user);
     }
 

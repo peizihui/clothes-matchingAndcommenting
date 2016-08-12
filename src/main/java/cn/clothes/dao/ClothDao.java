@@ -39,7 +39,7 @@ public interface ClothDao {
 	 * @param id
 	 * @return
 	 */
-	Clothes queryCloth(Long id);
+	Clothes queryCloth(@Param("id") Long id);
 	
 	/**
 	 * 分页查询服装信息

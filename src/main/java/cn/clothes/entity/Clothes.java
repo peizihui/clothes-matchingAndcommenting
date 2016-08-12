@@ -23,7 +23,7 @@ public class Clothes implements Serializable{
 	/**
 	 * 图片描述
 	 */
-	private String desc;
+	private String description;
 	/**
 	 * 创建时间
 	 */
@@ -41,11 +41,12 @@ public class Clothes implements Serializable{
 	public void setClothIcon(String clothIcon) {
 		this.clothIcon = clothIcon;
 	}
-	public String getDesc() {
-		return desc;
+	
+	public String getDescription() {
+		return description;
 	}
-	public void setDesc(String desc) {
-		this.desc = desc;
+	public void setDescription(String description) {
+		this.description = description;
 	}
 	public long getCreateTime() {
 		return createTime;
