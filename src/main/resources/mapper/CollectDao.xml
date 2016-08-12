@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.clothes.dao.CollectDao">
+    <insert id="insertCollect">
+        INSERT INTO t_collect (n_collect_id, n_user_id, n_collect_time)
+        VALUES (#{collectId}, #{userId}, #{collectTime})
+    </insert>
+    <delete id="deleteCollect">
+        DELETE FROM t_collect WHERE n_collect_id = #{clothingId}
+    </delete>
+</mapper>
