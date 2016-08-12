@@ -21,7 +21,7 @@
         FROM t_clothing
         WHERE n_id = #{id}
     </select>
-    <select id="queryForPage" resultType="User">
+    <select id="queryForPage" resultType="Clothes">
         SELECT *
         FROM t_clothing
         limit #{offset}, #{limit}
