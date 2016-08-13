@@ -11,4 +11,9 @@
     <delete id="deleteCollect">
         DELETE FROM t_collect WHERE n_collect_id = #{clothingId}
     </delete>
+    <select id="queryCollectForPage" resultType="Collect">
+    	SELECT n_id AS id, n_collect_id AS collectId,n_user_id AS userId, n_collect_time AS collectTime
+    	FROM
+    	t_collect WHERE n_user_id = #{userId} limit #{offset}, #{limit}
+    </select>
 </mapper>
