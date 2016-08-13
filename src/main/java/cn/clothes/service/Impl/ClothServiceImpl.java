@@ -17,8 +17,8 @@ public class ClothServiceImpl implements ClothService{
 		dao.insertCloth(cloth);
 	}
 
-	public int updateCloth(Long id) {
-		return dao.updateCloth(id);
+	public int updateCloth(Clothes cloth) {
+		return dao.updateCloth(cloth);
 	}
 
 	public Clothes queryCloth(Long id) {

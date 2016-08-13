@@ -22,6 +22,10 @@
     <select id="queryAllLikeByCloth" resultType="int">
         SELECT count(*)
         FROM t_like
-        WHERE n_clothing_id = #{clothingId}
+        WHERE n_clothing_id = #{clothingId} AND n_status = #{status}
     </select>
+    <update id="updateLikeStatus">
+    	UPDATE t_like set n_status = #{status}
+        WHERE n_clothing_id = #{clothingId}
+    </update>
 </mapper>

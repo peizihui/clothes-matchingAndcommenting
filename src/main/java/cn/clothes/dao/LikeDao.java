@@ -1,5 +1,6 @@
 package cn.clothes.dao;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import cn.clothes.entity.Like;
@@ -30,21 +31,26 @@ public interface LikeDao {
 	 * @param userId
 	 * @return
 	 */
-	int deleteLike(Long userId);
+	Integer deleteLike(Long userId);
 	
 	/**
 	 * 根据服装信息删除用户点赞
 	 * @param clothingId
 	 * @return
 	 */
-	int deleteLikeByCloth(Long clothingId);
+	Integer deleteLikeByCloth(Long clothingId);
 	
 	/**
 	 * 查询某个服装的所有点赞信息
 	 * @param clothingId
 	 * @return
 	 */
-	int queryAllLikeByCloth(Long clothingId);
+	Integer queryAllLikeByCloth(@Param("clothingId")Long clothingId, @Param("status")Integer status);
 	
-	
+	/**
+	 * 修改点赞状态
+	 * @param clothingId
+	 * @param status
+	 */
+	void updateLikeStatus(@Param("clothingId")Long clothingId, @Param("status")Integer status);
 }

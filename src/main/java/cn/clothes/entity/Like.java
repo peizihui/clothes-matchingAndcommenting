@@ -30,6 +30,16 @@ public class Like implements Serializable{
 	 * 点赞状态，1：点赞，2：取消
 	 */
 	private Integer status;
+	
+	public enum LikeStatus{
+		add(1),//点赞
+		cacel(2);//取消
+		
+		public int value;
+		private LikeStatus(Integer value) {
+			this.value = value;
+		}
+	}
 	public Long getId() {
 		return id;
 	}
