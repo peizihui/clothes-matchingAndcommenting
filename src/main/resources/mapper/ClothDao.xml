@@ -6,7 +6,7 @@
 <mapper namespace="cn.clothes.dao.ClothDao">
     <insert id="insertCloth">
         INSERT INTO t_clothing (c_cloth_icon, c_desc, n_createTime)
-        VALUES (#{clothIcon}, #{desc}, #{createTime})
+        VALUES (#{clothIcon}, #{description}, #{createTime})
     </insert>
     <delete id="deleteCloth">
         DELETE FROM t_clothing WHERE n_id = #{id}
@@ -21,7 +21,7 @@
         FROM t_clothing
         WHERE n_id = #{id}
     </select>
-    <select id="queryForPage" resultType="User">
+    <select id="queryForPage" resultType="Clothes">
         SELECT n_id AS id, c_cloth_icon AS clothIcon, c_desc AS description, n_createTime AS createTime
         FROM t_clothing
         limit #{offset}, #{limit}
