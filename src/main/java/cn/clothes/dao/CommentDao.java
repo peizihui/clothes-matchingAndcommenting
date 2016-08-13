@@ -27,5 +27,33 @@ public interface CommentDao {
 	 * @param limit
 	 * @return
 	 */
-	List<Comment> queryCommentForPage(@Param("offset") int offset, @Param("limit") int limit);
+	List<Comment> queryCommentForPage(@Param("topicId")Long topicId, @Param("offset") int offset, @Param("limit") int limit);
+	
+	/**
+	 * 根据主题查询评论信息
+	 * @param topicId
+	 * @return
+	 */
+	List<Comment> queryComment(Long topicId);
+	
+	/**
+	 * 删除评论信息
+	 * @param id
+	 * @return
+	 */
+	int deleteComment(Long id);
+	
+	/**
+	 * 通过用户id进行删除
+	 * @param id
+	 * @return
+	 */
+	int deleteCommentByUserId(Long userId);
+	
+	/**
+	 * 根据主题查询出评论总量
+	 * @param topicId
+	 * @return
+	 */
+	int queryCountByClothId(Long topicId);
 }
