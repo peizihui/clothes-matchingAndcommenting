@@ -13,16 +13,24 @@
     </delete>
     <update id="updateCloth">
         UPDATE t_clothing SET
-          c_cloth_icon = #{clothIcon},c_desc = #{desc}, n_createTime = #{createTime}
+          c_cloth_icon = #{clothIcon},c_desc = #{description}, n_createTime = #{createTime}
           WHERE n_id = #{id}
     </update>
     <select id="queryCloth" resultType="Clothes">
+<<<<<<< HEAD
         SELECT n_id AS id, c_cloth_icon AS clothIcon, c_desc AS description, n_createTime AS createTime
+=======
+        SELECT n_id as id, c_cloth_icon as clothIcon, c_desc as description, n_createTime as createTime
+>>>>>>> branch 'master' of https://github.com/strictnerd/clothes-matchingAndcommenting.git
         FROM t_clothing
         WHERE n_id = #{id}
     </select>
     <select id="queryForPage" resultType="Clothes">
+<<<<<<< HEAD
         SELECT n_id AS id, c_cloth_icon AS clothIcon, c_desc AS description, n_createTime AS createTime
+=======
+        SELECT n_id as id, c_cloth_icon as clothIcon, c_desc as description, n_createTime as createTime
+>>>>>>> branch 'master' of https://github.com/strictnerd/clothes-matchingAndcommenting.git
         FROM t_clothing
         limit #{offset}, #{limit}
     </select>

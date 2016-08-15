@@ -116,4 +116,20 @@ ALTER TABLE `t_comment`
 	ADD COLUMN `n_createTime` BIGINT(20) NOT NULL DEFAULT '0' COMMENT '创建时间' AFTER `n_from_id`;
 
 ALTER TABLE `t_reply`
+<<<<<<< HEAD
 	ADD COLUMN `n_createTime` BIGINT(20) NOT NULL DEFAULT '0' COMMENT '创建时间' AFTER `n_to_uid`;
+=======
+	ADD COLUMN `n_createTime` BIGINT(20) NOT NULL DEFAULT '0' COMMENT '创建时间' AFTER `n_to_uid`;
+
+	CREATE DATABASE IF NOT EXISTS `clothes` /*!40100 DEFAULT CHARACTER SET utf8 */;
+USE `clothes`;
+
+
+-- 导出  表 clothes.t_cloth_user 结构
+CREATE TABLE IF NOT EXISTS `t_cloth_user` (
+  `n_id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '唯一递增主键',
+  `n_cloth_id` bigint(20) NOT NULL DEFAULT '0' COMMENT '关联服装id',
+  `n_user_id` bigint(20) NOT NULL DEFAULT '0' COMMENT '关联用户id',
+  PRIMARY KEY (`n_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+>>>>>>> branch 'master' of https://github.com/strictnerd/clothes-matchingAndcommenting.git

@@ -3,34 +3,43 @@ package cn.clothes.dao;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Repository;
 
 import cn.clothes.entity.Reply;
 
-/**
- * 回复数据库操作类
- * @author clq
- *
- */
+@Repository
 public interface ReplyDao {
 	/**
-	 * 插入回复评论信息
+	 * 插入一条评论
 	 * @param reply
-	 * @return
 	 */
-	public int insertReply(Reply reply);
+	public void insertReply(Reply reply);
 	
 	/**
-	 * 批量删除回复信息
+	 * 根据评论id查询出回复信息
 	 * @param id
 	 * @return
 	 */
-	public int deleteReply(List<Long> id);
+	public List<Reply> queryReplyByCommentId(@Param("commentId")Long id, @Param("offset") int offset, @Param("limit") int limit);
 	
 	/**
-	 * 分页查询回复信息
-	 * @param offset
-	 * @param limit
+	 * 根据回复信息id查询出回复信息
+	 * @param replyId
 	 * @return
 	 */
-	public List<Reply> queryReplyForPage(@Param("offset") int offset, @Param("limit") int limit);
+	public List<Reply> queryReplyByReplyId(@Param("replyId")Long replyId, @Param("offset") int offset, @Param("limit") int limit);
+	
+	/**
+	 * 根据回复id删除回复信息
+	 * @param id
+	 * @return
+	 */
+	public int deleteReplyById(@Param("id")List<Long> id);
+	
+	/**
+	 * 根据回复id删除回复信息
+	 * @param id
+	 * @return
+	 */
+	public int deleteReplyByUserId(Long userId);
 }

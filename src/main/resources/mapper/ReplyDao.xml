@@ -5,6 +5,7 @@
 
 <mapper namespace="cn.clothes.dao.ReplyDao">
     <insert id="insertReply">
+<<<<<<< HEAD
         INSERT INTO t_reply (n_comment_id, n_reply_id, n_reply_type, c_content, n_from_uid, n_to_uid, n_createTime)
         VALUES (#{commentId}, #{replyId}, #{replyType}, #{content}, #{fromUid}, #{toUid}, #{createTime})
     </insert>
@@ -14,6 +15,29 @@
     <select id="queryReplyForPage" resultType="Reply">
     	SELECT *
         FROM t_reply
+=======
+        INSERT INTO t_reply (n_comment_id, n_reply_id, n_reply_type,c_content,n_from_uid,n_to_uid, n_createTime)
+        VALUES (#{commentId}, #{replyId}, #{replyType},#{content}, #{fromUid}, #{toUid}, #{createTime})
+    </insert>
+    <delete id="deleteReplyById">
+        DELETE
+		FROM t_reply WHERE n_id IN 
+		<foreach item="item" index="index" collection="id" open="(" separator="," close=")">  
+		  #{item}  
+		</foreach> 
+    </delete>
+    <delete id="deleteReplyByUserId">
+        DELETE FROM t_reply WHERE n_from_uid = #{userId}
+    </delete>
+    <select id="queryReplyByCommentId" resultType="Reply">
+        SELECT n_id AS id, n_comment_id AS commentId, n_reply_id AS replyId, n_reply_type AS replyType, c_content AS content, n_from_uid AS fromUid, n_to_uid AS toUid, n_createTIme AS createTime 
+        FROM t_reply WHERE n_comment_id = #{commentId}
+        limit #{offset}, #{limit}
+    </select>
+    <select id="queryReplyByReplyId" resultType="Reply">
+        SELECT n_id AS id, n_comment_id AS commentId, n_reply_id AS replyId, n_reply_type AS replyType, c_content AS content, n_from_uid AS fromUid, n_to_uid AS toUid, n_createTIme AS createTime 
+        FROM t_reply WHERE n_reply_id = #{replyId}
+>>>>>>> branch 'master' of https://github.com/strictnerd/clothes-matchingAndcommenting.git
         limit #{offset}, #{limit}
     </select>
 </mapper>

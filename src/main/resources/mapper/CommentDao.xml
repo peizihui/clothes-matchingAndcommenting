@@ -5,6 +5,7 @@
 
 <mapper namespace="cn.clothes.dao.CommentDao">
     <insert id="insertComment">
+<<<<<<< HEAD
         INSERT INTO t_comment (n_collect_id, n_user_id, n_collect_time)
         VALUES (#{collectId}, #{userId}, #{collectTime})
     </insert>
@@ -15,5 +16,29 @@
     	SELECT *
         FROM t_comment
         limit #{offset}, #{limit}
+=======
+        INSERT INTO t_comment (n_topic_id, n_topic_type, c_content, n_from_id, n_createTime)
+        VALUES (#{topicId}, #{topicType}, #{content}, #{fromId}， #{createTime})
+    </insert>
+    <delete id="deleteComment">
+        DELETE FROM t_comment WHERE n_id = #{id}
+    </delete>
+    <delete id="deleteCommentByUserId">
+        DELETE FROM t_comment WHERE n_from_id = #{userId}
+    </delete>
+    <select id="queryComment" resultType="Comment">
+        SELECT n_id AS id, n_topic_id AS topicId, n_topic_type AS topicType,c_content AS content, n_from_id AS fromId 
+        FROM t_comment
+        WHERE n_topic_id = #{topicId}
+    </select>
+    <select id="queryCommentForPage" resultType="Comment">
+        SELECT n_id AS id, n_topic_id AS topicId, n_topic_type AS topicType,c_content AS content, n_from_id AS fromId 
+        FROM t_comment
+        WHERE n_topic_id = #{topicId} limit #{offset}, #{limit}
+    </select>
+    <select id="queryCountByClothId" resultType="int">
+    	SELECT count(*)
+		FROM t_comment;
+>>>>>>> branch 'master' of https://github.com/strictnerd/clothes-matchingAndcommenting.git
     </select>
 </mapper>
