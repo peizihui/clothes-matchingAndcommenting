@@ -10,4 +10,5 @@ import cn.clothes.entity.Clothes;
 
 public interface ClothService {
 	public void addCloth(MultipartFile file, String content, UploadResultBean bean);
+	
 }
