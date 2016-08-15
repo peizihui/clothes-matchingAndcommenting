@@ -48,6 +48,7 @@ public class Clothes implements Serializable{
 	public void setDescription(String description) {
 		this.description = description;
 	}
+
 	public long getCreateTime() {
 		return createTime;
 	}

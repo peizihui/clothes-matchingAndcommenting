@@ -32,7 +32,7 @@ public interface ClothDao {
 	 * @param id
 	 * @return
 	 */
-	int updateCloth(Long id);
+	int updateCloth(Clothes cloth);
 	
 	/**
 	 * 根据id查询服装详细信息

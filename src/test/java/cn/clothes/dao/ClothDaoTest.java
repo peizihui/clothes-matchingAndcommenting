@@ -20,7 +20,7 @@ public class ClothDaoTest {
 	private ClothDao dao;
 	
 	@Test
-	public void insertUser() {
+	public void insertCloth(){
 		Clothes c = new Clothes();
 		c.setClothIcon("c:/desc/1.png");
 		c.setDescription("服装图片");
@@ -29,14 +29,30 @@ public class ClothDaoTest {
 	}
 	
 	@Test
-	public void selectUser() {
-		Clothes queryCloth = dao.queryCloth(1l);
-		System.out.println(queryCloth.getClothIcon());
+	public void selectClothes() {
+		Clothes queryCloth = dao.queryCloth(1L);
+		System.out.println(queryCloth);
 	}
 	
 	@Test
-	public void selectClothForPage() {
-		List<Clothes> queryForPage = dao.queryForPage(1, 2);
+	public void queryForPage() {
+		List<Clothes> queryForPage = dao.queryForPage(0, 2);
 		System.out.println(JSON.toJSONString(queryForPage));
+	}
+	
+	@Test
+	public void deleteCloth() {
+		int deleteCloth = this.dao.deleteCloth(1l);
+		System.out.println(deleteCloth);
+	}
+	
+	@Test
+	public void updateCloth() {
+		Clothes c = new Clothes();
+		c.setId(2l);
+		c.setClothIcon("test");
+		c.setCreateTime(System.currentTimeMillis());
+		c.setDescription("test");
+		this.dao.updateCloth(c);
 	}
 }

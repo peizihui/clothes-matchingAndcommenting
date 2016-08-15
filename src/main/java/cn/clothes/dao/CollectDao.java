@@ -29,8 +29,11 @@ public interface CollectDao {
 	int deleteCollect(Long clothingId);
 	
 	/**
-	 * 分页查询收藏信息
+	 * 根据用户id查询出收藏作品
+	 * @param userId
+	 * @param offset
+	 * @param limit
 	 * @return
 	 */
-	List<Collect> queryCollect(@Param("offset") int offset, @Param("limit") int limit);
+	List<Collect> queryCollectForPage(@Param("userId")Long userId, @Param("offset") int offset, @Param("limit") int limit);
 }
