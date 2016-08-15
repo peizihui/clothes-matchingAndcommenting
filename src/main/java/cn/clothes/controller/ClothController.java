@@ -29,20 +29,20 @@ public class ClothController {
 	@RequestMapping(value="/upload", method = RequestMethod.POST
             ,produces = {"application/json; charset=UTF-8"})
     @ResponseBody
-	public Object uploadImage(@RequestParam("name") String name, @RequestPart MultipartFile file, String content) {
+	public Object uploadImage(@RequestPart MultipartFile file, String content) {
 		if (!file.isEmpty()) {
             try {
                 byte[] bytes = file.getBytes();
                 BufferedOutputStream stream =
-                        new BufferedOutputStream(new FileOutputStream(new File(name + "-uploaded")));
+                        new BufferedOutputStream(new FileOutputStream(new File(file.getName() + "-uploaded")));
                 stream.write(bytes);
                 stream.close();
-                return "You successfully uploaded " + name + " into " + name + "-uploaded !";
+                return "You successfully uploaded " + file.getName() + " into " + file.getName() + "-uploaded !";
             } catch (Exception e) {
-                return "You failed to upload " + name + " => " + e.getMessage();
+                return "You failed to upload " + file.getName() + " => " + e.getMessage();
             }
         } else {
-            return "You failed to upload " + name + " because the file was empty.";
+            return "You failed to upload " + file.getName() + " because the file was empty.";
         }
 	}
 	
