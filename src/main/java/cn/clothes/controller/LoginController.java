@@ -12,6 +12,7 @@ import javax.servlet.*;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpServletResponseWrapper;
+import javax.servlet.http.HttpSession;
 import javax.xml.ws.spi.http.HttpContext;
 import java.io.IOException;
 
@@ -28,11 +29,18 @@ public class LoginController implements Filter {
     @Qualifier("loginUserResult")
     private LoginUserResult loginUserResult;*/
 
-    @RequestMapping(value="/login", method = RequestMethod.GET
+    @RequestMapping(value="/login", method = RequestMethod.POST
             ,produces = {"application/json; charset=UTF-8"})
     @ResponseBody
-    public UserResult login(@RequestParam("userName") String userName, @RequestParam("password") String password) {
-        User user = userService.queryByUserNameAndPassword(userName, password);
+    public UserResult login(HttpSession session, @RequestParam("userName") String userName, @RequestParam("password") String password) {
+        //User user = userService.queryByUserNameAndPassword(userName, password);
+    	User user = new User();
+    	user.setId(1L);
+        user.setUserName("admin");
+        user.setPassword("111111");
+        user.setIcon("icon");
+        //登陆过程中把用户信息放进session里面
+        session.setAttribute("user", user);
         System.out.println("login!");
         UserResult userResult = new UserResult();
         if (user == null) {
@@ -48,7 +56,18 @@ public class LoginController implements Filter {
                 userResult.setIcon(user.getIcon());
                 return userResult;
             }
-        }
+     }
+    
+    @RequestMapping(value="/login", method = RequestMethod.GET)
+    public String index() {
+    	return "user/login";
+    }
+    
+    @RequestMapping(value="/logout", method = RequestMethod.GET)
+    public String logout(HttpSession session) {
+    	session.invalidate();
+    	return "user/login";
+    }
 
     public void init(FilterConfig filterConfig) throws ServletException {
 

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="../script/jquery-1.10.2.js"></script>
+</head>
+<body>
+	<div id="login_div">
+		<form action="" id="loginForm">
+			  用户名 <input name="userName" type="text" value="admin">
+      		  密码 <input name="password" type="password" value="123">
+      		   <button id="login_button">提交</button>
+		</form>
+	</div>
+	<script type="text/javascript">
+		$(function(){
+			 $("#login_button").click(function() {
+		            $.ajax({
+		                url : "../user/login",
+		                type: "POST",
+		                data:$('#loginForm').serialize(),
+		                error: function(request) {
+		                    alert("Connection error");
+		                },
+		                dataType:"json",
+		                success: function(data) {
+		                  console.log(data);
+		                }
+		            });
+		            return false;
+		        });
+		});
+	</script>
+</body>
+</html>

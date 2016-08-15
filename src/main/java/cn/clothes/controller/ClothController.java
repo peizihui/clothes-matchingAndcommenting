@@ -48,6 +48,6 @@ public class ClothController {
 	
 	@RequestMapping(value="/index", method = RequestMethod.GET)
 	public String index() {
-		return "upload";
+		return "/cloth/upload";
 	}
 }
