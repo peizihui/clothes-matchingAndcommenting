@@ -28,15 +28,8 @@ public class HandlerInterceptorFilter implements HandlerInterceptor{
 	@Override
 	public boolean preHandle(HttpServletRequest req, HttpServletResponse resp, Object arg2) throws Exception {
 		User user = (User) req.getSession().getAttribute("user");
-		 String requestUri = req.getRequestURI();  
-        String contextPath = req.getContextPath();  
-        String url = requestUri.substring(contextPath.length());  
+        String contextPath = req.getContextPath(); 
         
-        System.out.println("requestUri:"+requestUri);
-        System.out.println("contextPath:"+contextPath);
-        System.out.println("url:"+url);
-           
-		System.out.println("开始拦截" + JSON.toJSONString(user));
 		if(user != null) {
 			return true;
 		}else {
