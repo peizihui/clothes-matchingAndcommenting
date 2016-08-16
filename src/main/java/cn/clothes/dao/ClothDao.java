@@ -18,7 +18,7 @@ public interface ClothDao {
 	 * 插入一条数据
 	 * @param cloth
 	 */
-	void insertCloth(Clothes cloth);
+	Long insertCloth(Clothes cloth);
 	
 	/**
 	 * 删除

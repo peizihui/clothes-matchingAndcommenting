@@ -26,6 +26,7 @@ public class ClothDaoTest {
 		c.setDescription("服装图片");
 		c.setCreateTime(System.currentTimeMillis());
 		dao.insertCloth(c);
+		System.out.println(c.getId());
 	}
 	
 	@Test

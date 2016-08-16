@@ -4,11 +4,11 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="cn.clothes.dao.ClothDao">
-    <insert id="insertCloth">
+    <insert id="insertCloth" useGeneratedKeys="true" keyProperty="id" parameterType="cn.clothes.entity.Clothes">
         INSERT INTO t_clothing (c_cloth_icon, c_desc, n_createTime)
         VALUES (#{clothIcon}, #{description}, #{createTime})
     </insert>
-    <delete id="deleteCloth">
+    <delete id="deleteCloth" >
         DELETE FROM t_clothing WHERE n_id = #{id}
     </delete>
     <update id="updateCloth">
