@@ -4,7 +4,14 @@
                       http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
          version="3.0"
          metadata-complete="true">
+	
 
+	 <context-param>
+		<param-name>UPLOAD_IMAGE_PATH</param-name>
+		<param-value>/clothes-matchingAndcommenting/temp/</param-value>
+	</context-param>
+
+	
     <filter>
         <filter-name>characterEncodingFilter</filter-name>
         <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
