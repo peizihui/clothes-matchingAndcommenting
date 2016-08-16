@@ -91,7 +91,7 @@
             <version>1.2.3</version>
         </dependency>
         <!--3.servlet web相关 -->
-        <dependency>
+      <!--   <dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>servlet-api</artifactId>
 			<version>2.5</version>
@@ -108,23 +108,27 @@
             <artifactId>standard</artifactId>
             <version>1.1.2</version>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/javax.servlet.jsp/jsp-api -->
+        https://mvnrepository.com/artifact/javax.servlet.jsp/jsp-api
         <dependency>
             <groupId>jstl</groupId>
             <artifactId>jstl</artifactId>
             <version>1.2</version>
-        </dependency>
+        </dependency> -->
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
             <version>2.5.4</version>
         </dependency>
         <dependency>
-            <groupId>javax.servlet</groupId>
-            <artifactId>javax.servlet-api</artifactId>
-            <version>3.1.0</version>
-        </dependency>
-
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+			<version>3.1.0</version>
+		</dependency>
+		<dependency>
+		  <groupId>commons-codec</groupId>
+		  <artifactId>commons-codec</artifactId>
+		  <version>1.9</version>
+		</dependency>
         <!-- 4.spring依赖-->
         <!--4.1spring核心依赖 -->
         <dependency>
@@ -177,11 +181,11 @@
         </dependency>
 
         <!-- https://mvnrepository.com/artifact/org.apache.tomcat.maven/tomcat7-maven-plugin -->
-        <dependency>
+        <!-- <dependency>
             <groupId>org.apache.tomcat.maven</groupId>
             <artifactId>tomcat7-maven-plugin</artifactId>
             <version>2.2</version>
-        </dependency>
+        </dependency> -->
 		<!-- fastjson -->
 		<dependency>
 			<groupId>com.alibaba</groupId>
