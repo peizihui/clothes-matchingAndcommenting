@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.alibaba.fastjson.util.Base64;
+
 import cn.clothes.dao.ClothDao;
 import cn.clothes.dao.ClothUserDao;
 import cn.clothes.dto.UploadResultBean;
@@ -16,6 +18,7 @@ import cn.clothes.entity.ClothUser;
 import cn.clothes.entity.Clothes;
 import cn.clothes.entity.User;
 import cn.clothes.service.ClothService;
+import cn.clothes.util.BdbHtmlPoolServer;
 import cn.clothes.util.FileUtil;
 import cn.clothes.util.ImageUtil;
 
@@ -30,11 +33,14 @@ public class ClothServiceImpl implements ClothService{
 	@Override
 	public void addCloth(MultipartFile file, String content, UploadResultBean bean, User user, String path) throws IOException {
 		//保存图片信息
-		ImageUtil.read(file.getBytes()).transferTo(file.getContentType(), new File(path));
-		
+		//ImageUtil.read(file.getBytes()).transferTo(file.getContentType(), new File(path));
+		String base64 = ImageUtil.read(file.getBytes()).toBase64(file.getContentType());
+		BdbHtmlPoolServer instance = BdbHtmlPoolServer.getInstance();
+		String cloth_icon = UUID.randomUUID().toString();
+		instance.saveData(cloth_icon.getBytes(), base64.getBytes());
 		//保存服装信息
 		Clothes cloth = new Clothes();
-		cloth.setClothIcon(path);
+		cloth.setClothIcon(cloth_icon);
 		cloth.setCreateTime(System.currentTimeMillis());
 		cloth.setDescription(content);
 		dao.insertCloth(cloth);

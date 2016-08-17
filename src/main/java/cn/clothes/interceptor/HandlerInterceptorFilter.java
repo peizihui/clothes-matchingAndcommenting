@@ -33,7 +33,7 @@ public class HandlerInterceptorFilter implements HandlerInterceptor{
 		if(user != null) {
 			return true;
 		}else {
-			resp.sendRedirect(contextPath+"/user/login");
+			resp.sendRedirect(contextPath+"/user/logout");
 			return false;
 		}
 	}

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xml-body>
+    <bdbConfig>
+    	<property name="allowCreate" value="true"/>   
+        <property name="transactional" value="false"/>   
+        <property name="deferredWrite" value="true"/>   
+        <property name="readOnly" value="false" />
+        <property name="sortedDuplicates" value="false" />
+        <property name="exclusiveCreate" value="false" />
+    	<!-- BDB数据存储路径 -->
+        <property name="bdbSavePath" value="F:/export/crabman/bdb/" />
+	</bdbConfig>
+	
+	<bdbEnvConfig>
+		<property name="allowCreate" value="true"/>
+		<property name="transactional" value="false"/>
+		<property name="cacheSize" value="16777216"/>
+		<property name="txnNoSyncVoid" value="true"/>
+		<property name="lockTimeout" value="100"/>
+		<property name="fileMax" value="100000000"/>
+		<property name="maxMemoryPercent" value="40"/>
+		<property name="faultReadSize" value="4096"/>
+		<property name="checkpointer" value="10000000"/>
+		<property name="txnTimeout" value="100"/>
+	</bdbEnvConfig>
+</xml-body>
