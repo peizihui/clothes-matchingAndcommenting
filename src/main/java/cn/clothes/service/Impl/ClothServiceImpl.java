@@ -3,6 +3,7 @@ package cn.clothes.service.Impl;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,11 +34,12 @@ public class ClothServiceImpl implements ClothService{
 	@Override
 	public void addCloth(MultipartFile file, String content, UploadResultBean bean, User user, String path) throws IOException {
 		//保存图片信息
-		//ImageUtil.read(file.getBytes()).transferTo(file.getContentType(), new File(path));
-		String base64 = ImageUtil.read(file.getBytes()).toBase64(file.getContentType());
 		BdbHtmlPoolServer instance = BdbHtmlPoolServer.getInstance();
 		String cloth_icon = UUID.randomUUID().toString();
-		instance.saveData(cloth_icon.getBytes(), base64.getBytes());
+		
+		byte[] encodeBase64 = org.apache.commons.codec.binary.Base64.encodeBase64(file.getBytes());
+		instance.saveData(cloth_icon.getBytes(), encodeBase64);
+		
 		//保存服装信息
 		Clothes cloth = new Clothes();
 		cloth.setClothIcon(cloth_icon);
@@ -52,6 +54,8 @@ public class ClothServiceImpl implements ClothService{
 		this.userDao.insertClothUser(clothUser);
 		
 		bean.setContent(content);
-		bean.setIconPath(path);
+		String media = ImageUtil.getMediaType(encodeBase64).getMedia();
+		System.out.println("data:" + media + ";base64," + new String(encodeBase64));
+		bean.setIconPath("data:" + media + ";base64," + new String(encodeBase64));
 	}
 }

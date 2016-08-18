@@ -218,7 +218,7 @@ public final class ImageUtil {
 	 * @param bytes 字节数组
 	 * @return
 	 */
-	public ImageType getMediaType(byte[] bytes){
+	public static ImageType getMediaType(byte[] bytes){
 		byte[] buffer = Arrays.copyOf(bytes, 8);
 		
 		if (buffer[0] == 'G' && buffer[1] == 'I' && buffer[2] == 'F'
