@@ -107,6 +107,9 @@
 =======
        <dependency>
 >>>>>>> branch 'master' of https://github.com/strictnerd/clothes-matchingAndcommenting.git
+=======
+       <dependency>
+>>>>>>> branch 'master' of https://github.com/strictnerd/clothes-matchingAndcommenting.git
 			<groupId>javax.servlet</groupId>
 			<artifactId>servlet-api</artifactId>
 			<version>2.5</version>
@@ -123,13 +126,17 @@
             <version>1.1.2</version>
         </dependency>
 <<<<<<< HEAD
+<<<<<<< HEAD
         https://mvnrepository.com/artifact/javax.servlet.jsp/jsp-api
+=======
+>>>>>>> branch 'master' of https://github.com/strictnerd/clothes-matchingAndcommenting.git
 =======
 >>>>>>> branch 'master' of https://github.com/strictnerd/clothes-matchingAndcommenting.git
         <dependency>
             <groupId>jstl</groupId>
             <artifactId>jstl</artifactId>
             <version>1.2</version>
+<<<<<<< HEAD
 <<<<<<< HEAD
         </dependency> -->
         <dependency>
