@@ -54,6 +54,11 @@
         </dependency>
         <!--1.日志 -->
         <dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>1.2.16</version>
+		</dependency>
+        <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
             <version>1.7.12</version>
@@ -90,29 +95,42 @@
             <artifactId>mybatis-spring</artifactId>
             <version>1.2.3</version>
         </dependency>
+        <!-- bdb相关类库[ -->
+		<dependency>
+			<groupId>com.sleepycat</groupId>
+			<artifactId>je</artifactId>
+			<version>5.0.73</version>
+		</dependency>
+		<!--] bdb相关类库 -->
         <!--3.servlet web相关 -->
       <!--   <dependency>
+=======
+       <dependency>
+>>>>>>> branch 'master' of https://github.com/strictnerd/clothes-matchingAndcommenting.git
 			<groupId>javax.servlet</groupId>
 			<artifactId>servlet-api</artifactId>
 			<version>2.5</version>
 			<scope>provided</scope>
 		</dependency>
         <dependency>
-		  <groupId>servletapi</groupId>
-		  <artifactId>servletapi</artifactId>
-		  <version>2.3</version>
-		  <type>pom</type>
-		</dependency>
-        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>2.5.4</version>
+        </dependency>
+		 <dependency>
             <groupId>taglibs</groupId>
             <artifactId>standard</artifactId>
             <version>1.1.2</version>
         </dependency>
+<<<<<<< HEAD
         https://mvnrepository.com/artifact/javax.servlet.jsp/jsp-api
+=======
+>>>>>>> branch 'master' of https://github.com/strictnerd/clothes-matchingAndcommenting.git
         <dependency>
             <groupId>jstl</groupId>
             <artifactId>jstl</artifactId>
             <version>1.2</version>
+<<<<<<< HEAD
         </dependency> -->
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
@@ -129,6 +147,7 @@
 		  <artifactId>commons-codec</artifactId>
 		  <version>1.9</version>
 		</dependency>
+
         <!-- 4.spring依赖-->
         <!--4.1spring核心依赖 -->
         <dependency>
@@ -191,6 +210,16 @@
 			<groupId>com.alibaba</groupId>
 			<artifactId>fastjson</artifactId>
 			<version>1.2.7</version>
+		</dependency>
+		<dependency>
+			<groupId>org.jodd</groupId>
+			<artifactId>jodd</artifactId>
+			<version>3.3.8</version>
+		</dependency>
+		<dependency>
+			<groupId>dom4j</groupId>
+			<artifactId>dom4j</artifactId>
+			<version>1.6</version>
 		</dependency>
     </dependencies>
 

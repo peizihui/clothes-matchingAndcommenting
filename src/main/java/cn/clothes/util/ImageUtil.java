@@ -98,7 +98,8 @@ public final class ImageUtil {
 	 */
 	public static ImageUtil read(byte[] input) throws IOException{
 		try (ByteArrayInputStream inputs = new ByteArrayInputStream(input)){
-			return new ImageUtil(ImageIO.read(inputs));
+			ImageUtil imageUtil = new ImageUtil(ImageIO.read(inputs));
+			return imageUtil;
 		
 		} catch (IOException e) {
 			throw e;
@@ -305,8 +306,10 @@ public final class ImageUtil {
 	}
 	
 	
-	public static void main(String[] args){
-		String img = "D:/photo/ss.txt";
+	public static void main(String[] args) throws IOException{
+		ImageUtil base64 = ImageUtil.read("F:\\201606151921\\C.jpg");
+		System.out.println(base64);
+		/*String img = "D:/photo/ss.txt";
 		try {
 			FileInputStream in =new FileInputStream(img);
 			byte[] byts = new byte[in.available()];
@@ -318,6 +321,6 @@ public final class ImageUtil {
 				ImageUtil.read(new String(byts)).transferTo(imgType.getType(), new File("D:/photo/ssss.jpg"));;
 			} catch (IOException e) {
 				e.printStackTrace();
-			}
+			}*/
 	}
 }

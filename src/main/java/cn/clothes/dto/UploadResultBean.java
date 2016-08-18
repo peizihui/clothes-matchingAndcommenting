@@ -1,11 +1,12 @@
 package cn.clothes.dto;
 
-public class UploadResultBean {
+public class UploadResultBean extends BaseBean{
 	private String iconPath;
 	private Integer type;
 	private String content;
 	private String userName;
 	private String userIcon;
+	
 	public String getContent() {
 		return content;
 	}
