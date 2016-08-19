@@ -4,6 +4,7 @@ package cn.clothes.service.Impl;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.List;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,7 @@ import cn.clothes.dto.UploadResultBean;
 import cn.clothes.entity.ClothUser;
 import cn.clothes.entity.Clothes;
 import cn.clothes.entity.User;
+import cn.clothes.page.Pagination;
 import cn.clothes.service.ClothService;
 import cn.clothes.util.BdbHtmlPoolServer;
 import cn.clothes.util.FileUtil;
@@ -55,7 +57,13 @@ public class ClothServiceImpl implements ClothService{
 		
 		bean.setContent(content);
 		String media = ImageUtil.getMediaType(encodeBase64).getMedia();
-		System.out.println("data:" + media + ";base64," + new String(encodeBase64));
+		//System.out.println("data:" + media + ";base64," + new String(encodeBase64));
 		bean.setIconPath("data:" + media + ";base64," + new String(encodeBase64));
+	}
+
+	@Override
+	public Pagination queryCloth(User user, Integer pageNumber, Integer pageSize, Integer totalCout, List<?> list) {
+		//select * from t_clothing tc join t_cloth_user tcu on tc.n_id = tcu.n_cloth_id where tcu.n_user_id = 1
+		return null;
 	}
 }
