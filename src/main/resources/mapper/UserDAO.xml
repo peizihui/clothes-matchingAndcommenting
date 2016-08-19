@@ -5,30 +5,30 @@
 
 <mapper namespace="cn.clothes.dao.UserDAO">
     <insert id="insertUser">
-        INSERT INTO USER (permission, user_name, password, icon, email)
-        VALUES (#{permission}, #{userName}, #{password}, #{icon}, #{email})
+        INSERT INTO t_user (n_type, c_user_name, c_password, c_icon, c_email, n_createTime)
+        VALUES (#{type}, #{userName}, #{password}, #{icon}, #{email}, #{createTime})
     </insert>
     <delete id="deleteUser">
-        DELETE FROM USER WHERE user_name = #{userName}
+        DELETE FROM t_user WHERE user_name = #{userName}
     </delete>
     <update id="updateUser">
-        UPDATE USER SET
+        UPDATE t_user SET
           password = #{password}
           WHERE user_name = #{userName}
     </update>
     <select id="queryUserByUserName" resultType="User">
         SELECT *
-        FROM USER
-        WHERE user_name = #{userName}
+        FROM t_user
+        WHERE c_user_name = #{userName}
     </select>
     <select id="queryAll" resultType="User">
         SELECT *
-        FROM USER
+        FROM t_user
         limit #{offset}, #{limit}
     </select>
     <select id="queryByUserNameAndPassword" resultType="User">
         SELECT *
-        FROM USER
-        WHERE user_name = #{userName} AND password = #{password}
+        FROM t_user
+        WHERE c_user_name = #{userName} AND c_password = #{password}
     </select>
 </mapper>

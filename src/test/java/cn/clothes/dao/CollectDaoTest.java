@@ -36,6 +36,6 @@ public class CollectDaoTest {
 	
 	@Test
 	public void cacelCollect() {
-		this.dao.deleteCollect(1l);
+		this.dao.deleteCollect(1l,1l);
 	}
 }

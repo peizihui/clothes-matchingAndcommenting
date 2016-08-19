@@ -33,29 +33,18 @@ public class LoginController implements Filter {
             ,produces = {"application/json; charset=UTF-8"})
     @ResponseBody
     public UserResult login(HttpSession session, @RequestParam("userName") String userName, @RequestParam("password") String password) {
-        //User user = userService.queryByUserNameAndPassword(userName, password);
-    	User user = new User();
-    	user.setId(1L);
-        user.setUserName("admin");
-        user.setPassword("111111");
-        user.setIcon("icon");
+        User user = userService.queryByUserNameAndPassword(userName, password);
         //登陆过程中把用户信息放进session里面
         session.setAttribute("user", user);
-        System.out.println("login!");
         UserResult userResult = new UserResult();
-        if (user == null) {
-            userResult.setPermission(-1);
-            userResult.setCode(0);
-            userResult.setMsg("用户名或密码错误");
-            return userResult;
-        } else {
-                userResult.setUserName(user.getUserName());
-                userResult.setPermission(user.getPermission());
-                userResult.setCode(1);
-                userResult.setMsg("登录成功");
-                userResult.setIcon(user.getIcon());
-                return userResult;
-            }
+        if(user != null) {
+        	userResult.setUserName(user.getUserName());
+        	userResult.setIcon(user.getIcon());
+        	userResult.setCode(1);
+        }else {
+        	userResult.setCode(0);
+        }
+        return userResult;
      }
     
     @RequestMapping(value="/login", method = RequestMethod.GET)

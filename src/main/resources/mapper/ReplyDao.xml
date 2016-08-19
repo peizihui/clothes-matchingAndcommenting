@@ -20,12 +20,15 @@
     </delete>
     <select id="queryReplyByCommentId" resultType="Reply">
         SELECT n_id AS id, n_comment_id AS commentId, n_reply_id AS replyId, n_reply_type AS replyType, c_content AS content, n_from_uid AS fromUid, n_to_uid AS toUid, n_createTIme AS createTime 
-        FROM t_reply WHERE n_comment_id = #{commentId}
+        FROM t_reply WHERE n_comment_id = #{commentId} order by n_createTIme
         limit #{offset}, #{limit}
     </select>
     <select id="queryReplyByReplyId" resultType="Reply">
         SELECT n_id AS id, n_comment_id AS commentId, n_reply_id AS replyId, n_reply_type AS replyType, c_content AS content, n_from_uid AS fromUid, n_to_uid AS toUid, n_createTIme AS createTime 
         FROM t_reply WHERE n_reply_id = #{replyId}
         limit #{offset}, #{limit}
+    </select>
+    <select id="queryCountByCommentId" resultType="int">
+    	select count(*) from t_reply WHERE n_comment_id = #{id}
     </select>
 </mapper>

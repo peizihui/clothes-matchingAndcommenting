@@ -58,4 +58,9 @@ public class ReplyDaoTest {
 	public void deleteByUserId() {
 		this.dao.deleteReplyByUserId(1l);
 	}
+	
+	@Test
+	public void queryCount() {
+		System.out.println(this.dao.queryCountByCommentId(1l));
+	}
 }

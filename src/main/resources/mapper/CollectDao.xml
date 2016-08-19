@@ -9,8 +9,11 @@
         VALUES (#{collectId}, #{userId}, #{collectTime})
     </insert>
     <delete id="deleteCollect">
-        DELETE FROM t_collect WHERE n_collect_id = #{clothingId}
+        DELETE FROM t_collect WHERE n_collect_id = #{clothingId} AND n_user_id = #{userId}
     </delete>
+    <select id="isExistCollect" resultType="int">
+    	SELECT count(*) FROM t_collect WHERE n_collect_id = #{clothingId} AND n_user_id = #{userId}
+    </select>
     <select id="queryCollectForPage" resultType="Collect">
     	SELECT n_id AS id, n_collect_id AS collectId,n_user_id AS userId, n_collect_time AS collectTime
     	FROM

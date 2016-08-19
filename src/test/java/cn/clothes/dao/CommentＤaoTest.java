@@ -32,7 +32,7 @@ public class CommentＤaoTest {
 	
 	@Test
 	public void queryForPage() {
-		List<Comment> queryCommentForPage = this.dao.queryCommentForPage(2l, 0, 2);
+		List<Comment> queryCommentForPage = this.dao.queryCommentForPage(2l, 1,0, 2);
 		System.out.println(JSON.toJSONString(queryCommentForPage));
 	}
 	

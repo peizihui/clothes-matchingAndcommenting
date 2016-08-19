@@ -42,4 +42,11 @@ public interface ReplyDao {
 	 * @return
 	 */
 	public int deleteReplyByUserId(Long userId);
+	
+	/**
+	 * 根据评论id查询回复的总量
+	 * @param id
+	 * @return
+	 */
+	public int queryCountByCommentId(Long id);
 }

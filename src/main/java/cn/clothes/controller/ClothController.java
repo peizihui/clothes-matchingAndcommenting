@@ -21,6 +21,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import cn.clothes.dto.UploadResultBean;
 import cn.clothes.entity.User;
+import cn.clothes.page.Pagination;
 import cn.clothes.service.ClothService;
 import cn.clothes.util.Constants;
 /**
@@ -35,6 +36,14 @@ public class ClothController {
 	@Autowired
 	private ClothService service;
 	
+	/**
+	 * 上传服装信息
+	 * @param file
+	 * @param content
+	 * @param session
+	 * @param req
+	 * @return
+	 */
 	@RequestMapping(value="/upload", method = RequestMethod.POST
             ,produces = {"application/json; charset=UTF-8"})
     @ResponseBody
@@ -64,5 +73,83 @@ public class ClothController {
 	@RequestMapping(value="/index", method = RequestMethod.GET)
 	public String index() {
 		return "/cloth/upload";
+	}
+	
+	@RequestMapping(value="/list", method = RequestMethod.GET)
+	public String list() {
+		return "/cloth/list";
+	}
+	/**
+	 * 达人推荐页面
+	 * @param pageNumber
+	 * @param pageSize
+	 * @param serach
+	 * @param req
+	 * @return
+	 */
+	@RequestMapping(value="/query")
+	@ResponseBody
+	public Object queryCloth(Integer pageNumber, Integer pageSize, String serach, HttpServletRequest req){
+		Map<String,Object> map = new HashMap<>();
+		User user = (User) req.getSession().getAttribute("user");
+		Pagination queryCloth = service.queryCloth(user, pageNumber, pageSize, serach);
+		map.put("result", queryCloth);
+		return map;
+	}
+	
+	/**
+	 * 点赞接口
+	 * @param req
+	 * @param clothId
+	 * @return
+	 */
+	@RequestMapping(value="/like")
+	@ResponseBody
+	public Object like(HttpServletRequest req, Long clothId) {
+		Map<String, Object> map = new HashMap<>();
+		User user = (User) req.getSession().getAttribute("user");
+		try{
+			this.service.like(user, clothId);
+			map.put("result", "success");
+		}catch(Exception e) {
+			map.put("result", "fail");
+			e.printStackTrace();
+		}
+		return map;
+	}
+	
+	/**
+	 * 添加收藏接口
+	 * @param req
+	 * @param clothId
+	 * @return
+	 */
+	@RequestMapping(value="/collect")
+	@ResponseBody
+	public Object collect(HttpServletRequest req, Long clothId) {
+		Map<String, Object> map = new HashMap<>();
+		User user = (User) req.getSession().getAttribute("user");
+		
+		map.put("result", this.service.collect(user, clothId));
+		return map;
+	}
+	
+	/**
+	 * 详情页
+	 * @param req
+	 * @param clothId
+	 * @return
+	 */
+	@RequestMapping(value="/detail")
+	@ResponseBody
+	public Object detail(HttpServletRequest req, Long clothId) {
+		Map<String, Object> map = new HashMap<>();
+		User user = (User) req.getSession().getAttribute("user");
+		try{
+			map.put("result", this.service.detail(user, clothId));
+		}catch(Exception e){
+			map.put("result", "fail");
+		}
+		return map;
 	}
 }

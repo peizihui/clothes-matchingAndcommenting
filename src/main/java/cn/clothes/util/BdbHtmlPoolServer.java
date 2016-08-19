@@ -68,7 +68,11 @@ public class BdbHtmlPoolServer extends AbstractBdbServer {
      */
     public String getClientResultBen(byte[] key){
     	byte[] bs = super.get(bdb, key);
-    	return new String(bs);
+    	if(bs != null) {
+    		return new String(bs);
+    	}else{
+    		return null;
+    	}
     }
     /**
      * 根据key删除数据
@@ -85,6 +89,9 @@ public class BdbHtmlPoolServer extends AbstractBdbServer {
 		bdb.getEnvironment().close();
 	}
 	
-	
+	public static void main(String[] args) { 
+		BdbHtmlPoolServer instance = BdbHtmlPoolServer.getInstance();
+		instance.getClientResultBen("1213".getBytes());
+	}
 	
 }

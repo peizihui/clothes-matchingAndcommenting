@@ -44,7 +44,7 @@ public class RegisterController {
                     return userResult;
                 } else {
                     User user = new User();
-                    user.setPermission(permission);
+                 //   user.setPermission(permission);
                     user.setUserName(userName);
                     user.setPassword(password);
                     user.setEmail(email);

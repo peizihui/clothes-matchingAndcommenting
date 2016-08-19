@@ -33,7 +33,7 @@ public class Like implements Serializable{
 	
 	public enum LikeStatus{
 		add(1),//点赞
-		cacel(2);//取消
+		cancel(2);//取消
 		
 		public int value;
 		private LikeStatus(Integer value) {

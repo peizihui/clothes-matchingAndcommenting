@@ -11,6 +11,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.alibaba.fastjson.JSON;
 
+import cn.clothes.dto.ClothResultBean;
 import cn.clothes.entity.Clothes;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -55,5 +56,17 @@ public class ClothDaoTest {
 		c.setCreateTime(System.currentTimeMillis());
 		c.setDescription("test");
 		this.dao.updateCloth(c);
+	}
+	
+	@Test
+	public void queryResultBean() {
+		List<ClothResultBean> queryResultBean = this.dao.queryResultBean(1L, 1, 6, null);
+		System.out.println(JSON.toJSONString(queryResultBean));
+	}
+	
+	@Test
+	public void queryDeatail() {
+		ClothResultBean querydetail = this.dao.querydetail(31l, 1l);
+		System.out.println(JSON.toJSONString(querydetail));
 	}
 }

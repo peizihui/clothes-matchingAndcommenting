@@ -5,59 +5,48 @@ package cn.clothes.dto;
  */
 public class UserResult {
     String userName;
-    int permission;
-    int code;
+
+	int type;
+
+	int code;
     String msg;
     String icon;
-
-    public String getUserName() {
-        return userName;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
-
-    public int getPermission() {
-        return permission;
-    }
-
-    public void setPermission(int permission) {
-        this.permission = permission;
-    }
-
     public int getCode() {
         return code;
     }
-
-    public void setCode(int code) {
-        this.code = code;
+    public String getIcon() {
+        return icon;
     }
 
     public String getMsg() {
         return msg;
     }
 
-    public void setMsg(String msg) {
-        this.msg = msg;
+    public int getType() {
+		return type;
+	}
+
+    public String getUserName() {
+        return userName;
     }
 
-    public String getIcon() {
-        return icon;
+    public void setCode(int code) {
+        this.code = code;
     }
 
     public void setIcon(String icon) {
         this.icon = icon;
     }
 
-    @Override
-    public String toString() {
-        return "UserResult{" +
-                "userName='" + userName + '\'' +
-                ", permission=" + permission +
-                ", code=" + code +
-                ", msg='" + msg + '\'' +
-                ", icon='" + icon + '\'' +
-                '}';
+    public void setMsg(String msg) {
+        this.msg = msg;
+    }
+
+    public void setType(int type) {
+		this.type = type;
+	}
+
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 }

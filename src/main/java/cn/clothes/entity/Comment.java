@@ -34,6 +34,45 @@ public class Comment implements Serializable{
 	 * 创建时间
 	 */
 	private Long createTime;
+	
+	/**
+	 * 用户id
+	 */
+	private Long userId;
+	
+	public Long getUserId() {
+		return userId;
+	}
+
+	public void setUserId(Long userId) {
+		this.userId = userId;
+	}
+
+	public String getUserIcon() {
+		return userIcon;
+	}
+
+	public void setUserIcon(String userIcon) {
+		this.userIcon = userIcon;
+	}
+
+	public String getUserName() {
+		return userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+
+	/**
+	 * 用户图标
+	 */
+	private String userIcon;
+	
+	/**
+	 * 用户名称
+	 */
+	private String userName;
 
 	public Long getId() {
 		return id;

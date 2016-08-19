@@ -25,7 +25,14 @@ public class UserDAOTest {
 
     @Test
     public void insertUser() throws Exception {
-
+    	User user = new User();
+    	user.setCreateTime(System.currentTimeMillis());
+    	user.setEmail("14141@qq.com");
+    	user.setIcon("8ba2f715-c8c6-4b41-83fd-21ddb2266d32");
+    	user.setPassword("1231231");
+    	user.setType(1);
+    	user.setUserName("test");
+    	this.userDAO.insertUser(user);
         System.out.println("~~~");
     }
 

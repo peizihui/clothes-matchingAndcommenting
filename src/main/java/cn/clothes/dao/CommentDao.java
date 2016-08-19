@@ -27,7 +27,7 @@ public interface CommentDao {
 	 * @param limit
 	 * @return
 	 */
-	List<Comment> queryCommentForPage(@Param("topicId")Long topicId, @Param("offset") int offset, @Param("limit") int limit);
+	List<Comment> queryCommentForPage(@Param("topicId")Long topicId, @Param("type")Integer type, @Param("offset") int offset, @Param("limit") int limit);
 	
 	/**
 	 * 根据主题查询评论信息

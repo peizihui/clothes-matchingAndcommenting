@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
+import cn.clothes.dto.ClothResultBean;
 import cn.clothes.entity.Collect;
 
 /**
@@ -26,7 +27,16 @@ public interface CollectDao {
 	 * @param clothingId
 	 * @return
 	 */
-	int deleteCollect(Long clothingId);
+	int deleteCollect(@Param("clothingId")Long clothingId, @Param("userId")Long userId);
+	
+	/**
+	 * 查询是否已经添加收藏
+	 * @param clothingId
+	 * @param userId
+	 * @return
+	 */
+	int isExistCollect(@Param("clothingId")Long clothingId, @Param("userId")Long userId);
+	
 	
 	/**
 	 * 根据用户id查询出收藏作品

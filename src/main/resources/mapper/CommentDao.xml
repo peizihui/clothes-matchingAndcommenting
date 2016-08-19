@@ -20,12 +20,16 @@
         WHERE n_topic_id = #{topicId}
     </select>
     <select id="queryCommentForPage" resultType="Comment">
-        SELECT n_id AS id, n_topic_id AS topicId, n_topic_type AS topicType,c_content AS content, n_from_id AS fromId 
-        FROM t_comment
-        WHERE n_topic_id = #{topicId} limit #{offset}, #{limit}
+        SELECT tc.n_id AS id, tc.n_topic_id AS topicId, tc.n_topic_type AS topicType,tc.c_content AS content,
+        tc.n_from_id AS fromId, tr.c_user_name AS userName, tr.c_icon AS userIcon, tc.n_createTime AS createTime
+        FROM t_comment tc 
+		LEFT JOIN t_cloth_user tcu ON tc.n_topic_id = tcu.n_cloth_id
+		LEFT JOIN t_user tr ON tr.n_id = tcu.n_user_id
+        WHERE n_topic_id = #{topicId} AND tr.n_type = #{type} order by tc.n_createTime DESC 
+        limit #{offset}, #{limit}
     </select>
     <select id="queryCountByClothId" resultType="int">
     	SELECT count(*)
-		FROM t_comment;
+		FROM t_comment WHERE n_topic_id = #{topicId};
     </select>
 </mapper>

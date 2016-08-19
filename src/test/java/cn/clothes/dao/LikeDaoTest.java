@@ -33,6 +33,6 @@ public class LikeDaoTest {
 	
 	@Test
 	public void upadateLikeStatus() {
-		this.dao.updateLikeStatus(2l, Like.LikeStatus.cacel.value);
+		this.dao.updateLikeStatus(2l, Like.LikeStatus.cancel.value);
 	}
 }

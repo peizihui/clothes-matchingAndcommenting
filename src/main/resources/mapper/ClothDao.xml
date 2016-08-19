@@ -26,4 +26,27 @@
         FROM t_clothing
         limit #{offset}, #{limit}
     </select>
+    <select id="queryResultBean" resultType="cn.clothes.dto.ClothResultBean">
+    	SELECT tc.n_id AS clothId, tc.c_cloth_icon AS clothIcon,
+    	tc.c_desc AS clothDesc, tcu.n_user_id AS userId,
+    	tu.c_user_name AS userName, tu.c_icon AS userIcon
+    	FROM t_clothing tc 
+    	JOIN t_cloth_user tcu on tc.n_id = tcu.n_cloth_id
+    	LEFT JOIN t_user tu ON tcu.n_user_id = tu.n_id
+    	WHERE tcu.n_user_id = #{userId} 
+    	AND tc.c_desc LIKE '%${search}%'
+    	LIMIT #{offset}, #{limit}
+    </select>
+    <select id="querydetail" resultType="cn.clothes.dto.ClothResultBean">
+    	SELECT tc.n_id AS clothId, tc.c_cloth_icon AS clothIcon,
+    	tc.c_desc AS clothDesc, tcu.n_user_id AS userId, tc.n_createTime AS createTime,
+    	tu.c_user_name AS userName, tu.c_icon AS userIcon
+    	FROM t_clothing tc 
+    	JOIN t_cloth_user tcu on tc.n_id = tcu.n_cloth_id
+    	LEFT JOIN t_user tu ON tcu.n_user_id = tu.n_id
+    	WHERE tcu.n_user_id = #{userId} AND tc.n_id = #{clothingId}
+    </select>
+    <select id="queryCount">
+    	SELECT COUNT(*) FROM t_clothing;
+    </select>
 </mapper>
