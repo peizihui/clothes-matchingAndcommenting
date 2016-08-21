@@ -61,6 +61,7 @@ public class CommentServiceImpl implements CommentService{
 		comment.setCreateTime(System.currentTimeMillis());
 		comment.setFromId(user.getId());
 		comment.setTopicId(clothId);
+		comment.setTopicType(1);
 		this.commentDao.insertComment(comment);
 	}
 
@@ -68,6 +69,7 @@ public class CommentServiceImpl implements CommentService{
 	public void reply(Long commentId, Long toUserId, String content, User user) {
 		Reply reply = new Reply();
 		reply.setCommentId(commentId);
+		reply.setReplyId(commentId);
 		reply.setContent(content);
 		reply.setCreateTime(System.currentTimeMillis());
 		reply.setFromUid(user.getId());

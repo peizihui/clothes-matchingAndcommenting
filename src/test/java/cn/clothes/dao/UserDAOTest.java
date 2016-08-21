@@ -48,7 +48,7 @@ public class UserDAOTest {
 
     @Test
     public void queryUserByUserName() throws Exception {
-        User user = userDAO.queryUserByUserName("leehom");
+        User user = userDAO.queryUserByUserName("admin");
         System.out.println("!!!!" + user);
     }
 
@@ -59,7 +59,7 @@ public class UserDAOTest {
 
     @Test
     public void queryByUserNameAndPassword() throws Exception {
-        User user = userDAO.queryByUserNameAndPassword("userName", "password");
+        User user = userDAO.queryByUserNameAndPassword("admin", "123");
         System.out.println("user" + user);
     }
 

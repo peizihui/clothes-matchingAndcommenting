@@ -1,6 +1,5 @@
 package cn.clothes.service;
 
-import cn.clothes.dto.CommentResultBean;
 import cn.clothes.entity.User;
 import cn.clothes.page.Pagination;
 

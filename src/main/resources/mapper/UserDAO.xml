@@ -27,7 +27,7 @@
         limit #{offset}, #{limit}
     </select>
     <select id="queryByUserNameAndPassword" resultType="User">
-        SELECT *
+        SELECT n_id AS id, n_type AS type, c_user_name AS userName, c_password AS password,c_icon AS icon, c_email AS email
         FROM t_user
         WHERE c_user_name = #{userName} AND c_password = #{password}
     </select>

@@ -2,8 +2,6 @@ package cn.clothes.util;
 
 import java.io.File;
 
-import org.springframework.web.context.ContextLoader;
-
 public class FileUtil {
 	public static String getRootPath() {
 		return null;

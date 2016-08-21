@@ -1,8 +1,5 @@
 package cn.clothes.controller;
 
-import java.io.BufferedOutputStream;
-import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
@@ -14,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
@@ -24,6 +20,7 @@ import cn.clothes.entity.User;
 import cn.clothes.page.Pagination;
 import cn.clothes.service.ClothService;
 import cn.clothes.util.Constants;
+import cn.clothes.util.Log;
 /**
  * 服装api
  * @author clq
@@ -32,7 +29,7 @@ import cn.clothes.util.Constants;
 @Controller
 @RequestMapping("/cloth")
 public class ClothController {
-	
+	Log log = Log.getLogger(ClothController.class);
 	@Autowired
 	private ClothService service;
 	
@@ -107,13 +104,17 @@ public class ClothController {
 	@ResponseBody
 	public Object like(HttpServletRequest req, Long clothId) {
 		Map<String, Object> map = new HashMap<>();
+		if(clothId == null) {
+			map.put("result", Constants.ABSENCE_NEED_PARAMETER);
+			return map;
+		}
 		User user = (User) req.getSession().getAttribute("user");
 		try{
 			this.service.like(user, clothId);
 			map.put("result", "success");
 		}catch(Exception e) {
-			map.put("result", "fail");
-			e.printStackTrace();
+			map.put("result", Constants.SERVER_INTERNAL_ERROR);
+			log.error(e);
 		}
 		return map;
 	}
@@ -128,6 +129,12 @@ public class ClothController {
 	@ResponseBody
 	public Object collect(HttpServletRequest req, Long clothId) {
 		Map<String, Object> map = new HashMap<>();
+		
+		if(clothId == null) {
+			map.put("result", Constants.ABSENCE_NEED_PARAMETER);
+			return map;
+		}
+		
 		User user = (User) req.getSession().getAttribute("user");
 		
 		map.put("result", this.service.collect(user, clothId));
@@ -144,11 +151,18 @@ public class ClothController {
 	@ResponseBody
 	public Object detail(HttpServletRequest req, Long clothId) {
 		Map<String, Object> map = new HashMap<>();
+		
+		if(clothId == null) {
+			map.put("result", Constants.ABSENCE_NEED_PARAMETER);
+			return map;
+		}
+		
 		User user = (User) req.getSession().getAttribute("user");
 		try{
 			map.put("result", this.service.detail(user, clothId));
 		}catch(Exception e){
-			map.put("result", "fail");
+			map.put("result", Constants.SERVER_INTERNAL_ERROR);
+			log.error(e);
 		}
 		return map;
 	}

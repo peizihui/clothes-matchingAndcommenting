@@ -1,9 +1,8 @@
 package cn.clothes.service;
 
-import cn.clothes.entity.User;
-import org.apache.ibatis.annotations.Param;
-
 import java.util.List;
+
+import cn.clothes.entity.User;
 
 /**
  * Created by nerd on 2016/7/1.
