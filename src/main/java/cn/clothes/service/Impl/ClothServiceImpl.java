@@ -71,9 +71,6 @@ public class ClothServiceImpl implements ClothService{
 		this.userDao.insertClothUser(clothUser);
 		
 		bean.setContent(content);
-		//String media = ImageUtil.getMediaType(encodeBase64).getMedia();
-		//System.out.println("data:" + media + ";base64," + new String(encodeBase64));
-		//bean.setIconPath("data:" + media + ";base64," + new String(encodeBase64));
 	}
 
 	@Override
@@ -155,4 +152,5 @@ public class ClothServiceImpl implements ClothService{
 		}
 		return querydetail;
 	}	
+
 }

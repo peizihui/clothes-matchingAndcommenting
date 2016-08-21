@@ -49,4 +49,5 @@ public interface ClothService {
 	 * @return
 	 */
 	public ClothResultBean detail(User user, Long clothId);
+
 }
