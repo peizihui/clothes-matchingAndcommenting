@@ -46,7 +46,7 @@
     	LEFT JOIN t_user tu ON tcu.n_user_id = tu.n_id
     	WHERE tcu.n_user_id = #{userId} AND tc.n_id = #{clothingId}
     </select>
-    <select id="queryCount">
+    <select id="queryCount" resultType="int">
     	SELECT COUNT(*) FROM t_clothing;
     </select>
 </mapper>

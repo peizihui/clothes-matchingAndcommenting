@@ -15,9 +15,9 @@
         DELETE FROM t_like WHERE n_clothing_id = #{clothingId}
     </delete>
     <select id="queryLike" resultType="Like">
-        SELECT *
+        SELECT n_id AS id, n_status AS status
         FROM t_like
-        WHERE n_id = #{id} AND n_clothing_id = #{clothingId}
+        WHERE n_user_id = #{userId} AND n_clothing_id = #{clothingId}
     </select>
     <select id="queryAllLikeByCloth" resultType="int">
         SELECT count(*)

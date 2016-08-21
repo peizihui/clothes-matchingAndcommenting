@@ -110,6 +110,7 @@ public class ClothServiceImpl implements ClothService{
 			like.setLikeTime(System.currentTimeMillis());
 			like.setUserId(user.getId());
 			like.setStatus(Like.LikeStatus.add.value);
+			this.likeDao.insertLike(like);
 		}else {
 			if(queryLike.getStatus() == Like.LikeStatus.add.value) {
 				this.likeDao.updateLikeStatus(clothId, Like.LikeStatus.cancel.value);

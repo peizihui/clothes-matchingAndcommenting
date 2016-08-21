@@ -88,6 +88,10 @@ public class ClothController {
 	@ResponseBody
 	public Object queryCloth(Integer pageNumber, Integer pageSize, String serach, HttpServletRequest req){
 		Map<String,Object> map = new HashMap<>();
+		if(pageNumber == null) {
+			map.put("result", Constants.ABSENCE_NEED_PARAMETER);
+			return map;
+		}
 		User user = (User) req.getSession().getAttribute("user");
 		Pagination queryCloth = service.queryCloth(user, pageNumber, pageSize, serach);
 		map.put("result", queryCloth);

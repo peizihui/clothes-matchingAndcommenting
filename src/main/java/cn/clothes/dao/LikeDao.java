@@ -24,7 +24,7 @@ public interface LikeDao {
 	 * @param userId
 	 * @return
 	 */
-	Like queryLike(Long clothingId, Long userId);
+	Like queryLike(@Param("clothingId")Long clothingId, @Param("userId")Long userId);
 	
 	/**
 	 * 根绝用户删除点赞信息

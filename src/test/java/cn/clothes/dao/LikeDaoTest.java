@@ -35,4 +35,9 @@ public class LikeDaoTest {
 	public void upadateLikeStatus() {
 		this.dao.updateLikeStatus(2l, Like.LikeStatus.cancel.value);
 	}
+	
+	@Test
+	public void queryCount() {
+		System.out.println(this.dao.queryLike(1l, 3l));
+	}
 }
