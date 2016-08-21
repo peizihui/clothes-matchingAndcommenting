@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import cn.clothes.entity.User;
 import cn.clothes.service.CommentService;
+import cn.clothes.util.Constants;
+import cn.clothes.util.Log;
 
 /**
  *  评论接口
@@ -22,6 +24,7 @@ import cn.clothes.service.CommentService;
 @RequestMapping("/comment")
 public class CommentController {
 	
+	Log log = Log.getLogger(CommentController.class);
 	@Autowired
 	private CommentService service;
 	
@@ -39,6 +42,15 @@ public class CommentController {
 	public Object queryComment(Integer pageNumber, Integer pageSize, Long clothId, Integer type, 
 			HttpServletRequest req) {
 		Map<String, Object> map = new HashMap<>();
+		
+		if(pageSize == null) {
+			pageSize = 10;
+		}
+		if(pageNumber == null || clothId == null || type == null) {
+			map.put("result", Constants.ABSENCE_NEED_PARAMETER);
+			return map;
+		}
+		
 		map.put("result", service.queryComment(clothId, type, pageNumber, pageSize));
 		return map;
 	}
@@ -54,13 +66,18 @@ public class CommentController {
 	@ResponseBody
 	public Object comment(Long clothId,String content, HttpServletRequest req) {
 		Map<String, Object> map = new HashMap<>();
+		if(clothId == null || content == null) {
+			map.put("result", Constants.ABSENCE_NEED_PARAMETER);
+			return map;
+		}
+		
 		User user = (User) req.getSession().getAttribute("user");
 		try{
 			this.service.Comment(clothId, content, user);
 			map.put("result", "success");
 		}catch(Exception e) {
-			map.put("result", "fail");
-			e.printStackTrace();
+			map.put("result", Constants.SERVER_INTERNAL_ERROR);
+			log.error(e);
 		}
 		return map;
 	}
@@ -77,13 +94,18 @@ public class CommentController {
 	@ResponseBody
 	public Object reply(Long commentId, Long toUserId, String content,  HttpServletRequest req) {
 		Map<String, Object> map = new HashMap<>();
+		
+		if(commentId == null || content == null) {
+			map.put("result", Constants.ABSENCE_NEED_PARAMETER);
+			return map;
+		}
 		User user = (User) req.getSession().getAttribute("user");
 		try{
 			this.service.reply(commentId, toUserId, content, user);
 			map.put("result", "success");
 		}catch(Exception e){
 			map.put("result", "fail");
-			e.printStackTrace();
+			log.error(e);
 		}
 		return map;
 	}

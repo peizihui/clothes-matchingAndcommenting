@@ -61,6 +61,7 @@ public class CommentServiceImpl implements CommentService{
 		comment.setCreateTime(System.currentTimeMillis());
 		comment.setFromId(user.getId());
 		comment.setTopicId(clothId);
+		comment.setTopicType(1);
 		this.commentDao.insertComment(comment);
 	}
 

@@ -35,7 +35,8 @@
        <!--  多个拦截器，顺序执行   -->
         <mvc:interceptor>  
             <!--  表示所有url包括子url路径   -->                          
-            <mvc:mapping path="/cloth/*"/>  
+            <mvc:mapping path="/cloth/*"/>
+            <mvc:mapping path="/comment/*"/>  
             <bean class="cn.clothes.interceptor.HandlerInterceptorFilter"/>  
         </mvc:interceptor>  
     </mvc:interceptors>
