@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.alibaba.fastjson.JSON;
+
 import cn.clothes.dao.ClothDao;
 import cn.clothes.dao.ClothUserDao;
 import cn.clothes.dao.CollectDao;
@@ -67,13 +69,14 @@ public class ClothServiceImpl implements ClothService{
 		this.userDao.insertClothUser(clothUser);
 		
 		bean.setContent(content);
+		instance.close();
 	}
 
 	@Override
 	public Pagination queryCloth(User user, Integer pageNumber, Integer pageSize, String serach) {
 		//pageNumber = 1;
 		if(pageSize == null) {
-			pageSize = 10;
+			pageSize = 1;
 		}
 		
 		BdbHtmlPoolServer instance = BdbHtmlPoolServer.getInstance();
@@ -82,7 +85,7 @@ public class ClothServiceImpl implements ClothService{
 			Integer allLikeCount = likeDao.queryAllLikeByCloth(bean.getClothId(), Like.LikeStatus.add.value);
 			bean.setLikeCount(allLikeCount);
 			
-			int allCountComment = commentDao.queryCountByClothId(bean.getClothId());
+			int allCountComment = commentDao.queryCountByClothId(bean.getClothId(),user.getType());
 			bean.setCommentCount(allCountComment);
 			
 			//获取服装图片信息
@@ -98,6 +101,7 @@ public class ClothServiceImpl implements ClothService{
 		}
 		instance.close();
 		Integer totalCount = this.dao.queryCount();
+		instance.close();
 		return new Pagination(pageNumber, pageSize, totalCount, resultBean);
 	}
 
@@ -147,6 +151,7 @@ public class ClothServiceImpl implements ClothService{
 		if(querydetail.getUserIcon() != null) {
 			querydetail.setUserIcon(instance.getClientResultBen(querydetail.getUserIcon().getBytes()));
 		}
+		instance.close();
 		return querydetail;
 	}	
 

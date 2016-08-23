@@ -55,5 +55,5 @@ public interface CommentDao {
 	 * @param topicId
 	 * @return
 	 */
-	int queryCountByClothId(Long topicId);
+	int queryCountByClothId(@Param("topicId")Long topicId, @Param("type")int type);
 }

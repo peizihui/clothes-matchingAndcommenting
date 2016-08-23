@@ -6,9 +6,11 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import cn.clothes.dao.ClothUserDao;
 import cn.clothes.dao.CommentDao;
 import cn.clothes.dao.ReplyDao;
 import cn.clothes.dto.CommentResultBean;
+import cn.clothes.entity.ClothUser;
 import cn.clothes.entity.Comment;
 import cn.clothes.entity.Reply;
 import cn.clothes.entity.User;
@@ -23,13 +25,15 @@ public class CommentServiceImpl implements CommentService{
 	private CommentDao commentDao;
 	@Autowired
 	private ReplyDao replyDao;
+	@Autowired
+	private ClothUserDao clothUserDao;
 	
 	@Override
 	public Pagination queryComment(Long clothId, Integer type,Integer pageNumber, Integer pageSize) {
 		List<CommentResultBean> list = new ArrayList<>();
 		List<Comment> commentList = this.commentDao.queryCommentForPage
 				(clothId, type, pageNumber, pageSize);
-		int totalCount = this.commentDao.queryCountByClothId(clothId);
+		int totalCount = this.commentDao.queryCountByClothId(clothId,type);
 		BdbHtmlPoolServer instance = BdbHtmlPoolServer.getInstance();
 		
 		for(Comment c : commentList) {
@@ -63,6 +67,10 @@ public class CommentServiceImpl implements CommentService{
 		comment.setTopicId(clothId);
 		comment.setTopicType(1);
 		this.commentDao.insertComment(comment);
+		ClothUser clothUser = new ClothUser();
+		clothUser.setClothId(clothId);
+		clothUser.setUserId(user.getId());
+		this.clothUserDao.insertClothUser(clothUser);
 	}
 
 	@Override

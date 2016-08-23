@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.alibaba.fastjson.JSON;
+
 import cn.clothes.dto.UploadResultBean;
 import cn.clothes.entity.User;
 import cn.clothes.page.Pagination;
@@ -53,6 +55,8 @@ public class ClothController {
 				req.getSession().getServletContext().getRealPath("/");
 				service.addCloth(file, content, bean, user, req.getSession().getServletContext().getRealPath("/")+"temp/"+file.getName());
 				bean.setIsSuccess(Constants.RESULT_IS_SUCCESS);
+				bean.setUserName(user.getUserName());
+				
 				map.put("data", bean);
 			} catch (IOException e) {
 				bean.setIsSuccess(Constants.RESULT_IS_FAIL);

@@ -44,7 +44,7 @@ public class CommentＤaoTest {
 	
 	@Test
 	public void queryCountByuserId() {
-		int queryCountByClothId = this.dao.queryCountByClothId(2l);
+		int queryCountByClothId = this.dao.queryCountByClothId(2l,1);
 		System.out.println(queryCountByClothId);
 	}
 	

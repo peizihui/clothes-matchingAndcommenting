@@ -29,7 +29,9 @@
         limit #{offset}, #{limit}
     </select>
     <select id="queryCountByClothId" resultType="int">
-    	SELECT count(*)
-		FROM t_comment WHERE n_topic_id = #{topicId};
+    	SELECT count(*) FROM t_comment tc 
+		LEFT JOIN t_cloth_user tcu ON tc.n_topic_id = tcu.n_cloth_id
+		LEFT JOIN t_user tr ON tr.n_id = tcu.n_user_id
+        WHERE n_topic_id = #{topicId} AND tr.n_type = #{type}
     </select>
 </mapper>
