@@ -10,7 +10,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import cn.clothes.dto.ReplyResultBean;
+import cn.clothes.entity.Reply;
 import cn.clothes.entity.User;
+import cn.clothes.page.Pagination;
 import cn.clothes.service.CommentService;
 import cn.clothes.util.Constants;
 import cn.clothes.util.Log;
@@ -100,12 +103,43 @@ public class CommentController {
 			return map;
 		}
 		User user = (User) req.getSession().getAttribute("user");
+		ReplyResultBean bean = new ReplyResultBean();
 		try{
-			this.service.reply(commentId, toUserId, content, user);
-			map.put("result", "success");
+			Reply reply = this.service.reply(commentId, toUserId, content, user);
+			bean.setIsSuccess("success");
+			bean.setReply(reply);
+			map.put("result", bean);
 		}catch(Exception e){
-			map.put("result", "fail");
+			bean.setIsSuccess("fail");
+			bean.setCause("服务器内部异常");
+			map.put("result", bean);
 			log.error(e);
+		}
+		return map;
+	}
+	
+	/**
+	 * 评论数据接口
+	 * @param pageNumber
+	 * @param pageSize
+	 * @param commentId
+	 * @param req
+	 * @return
+	 */
+	@RequestMapping(value="/replyList")
+	@ResponseBody
+	public Object replyList(Integer pageNumber, Integer pageSize, Long commentId, HttpServletRequest req) {
+		Map<String, Object> map = new HashMap<>();
+		if(pageNumber == null || commentId == null) {
+			map.put("result", Constants.ABSENCE_NEED_PARAMETER);
+			return map;
+		}
+		
+		try{
+			map.put("result", this.service.queryReply(commentId, pageNumber, pageSize));
+		}catch(Exception e) {
+			this.log.error(e);
+			map.put("result", Constants.SERVER_INTERNAL_ERROR);
 		}
 		return map;
 	}

@@ -1,5 +1,6 @@
 package cn.clothes.service;
 
+import cn.clothes.entity.Reply;
 import cn.clothes.entity.User;
 import cn.clothes.page.Pagination;
 
@@ -24,5 +25,14 @@ public interface CommentService {
 	 * @param content
 	 * @param user
 	 */
-	public void reply(Long commentId, Long toUserId, String content, User user);
+	public Reply reply(Long commentId, Long toUserId, String content, User user);
+	
+	/**
+	 * 查询评论
+	 * @param clothId
+	 * @param pageNumber
+	 * @param pageSize
+	 * @return
+	 */
+	public Pagination queryReply(Long clothId, Integer pageNumber, Integer pageSize);
 }

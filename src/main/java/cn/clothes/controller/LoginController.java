@@ -50,6 +50,7 @@ public class LoginController implements Filter {
         }else {
         	userResult.setCode(0);
         }
+        
         return userResult;
      }
     

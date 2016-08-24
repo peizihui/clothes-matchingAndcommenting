@@ -55,7 +55,7 @@ public class CommentServiceImpl implements CommentService{
 			}
 			list.add(bean);
 		}
-		return new Pagination(pageNumber, pageSize, totalCount, commentList);
+		return new Pagination(pageNumber, pageSize, totalCount, list);
 	}
 
 	@Override
@@ -74,7 +74,7 @@ public class CommentServiceImpl implements CommentService{
 	}
 
 	@Override
-	public void reply(Long commentId, Long toUserId, String content, User user) {
+	public Reply reply(Long commentId, Long toUserId, String content, User user) {
 		Reply reply = new Reply();
 		reply.setCommentId(commentId);
 		reply.setReplyId(commentId);
@@ -83,6 +83,17 @@ public class CommentServiceImpl implements CommentService{
 		reply.setFromUid(user.getId());
 		reply.setToUid(toUserId);
 		this.replyDao.insertReply(reply);
+		return reply;
+	}
+
+	@Override
+	public Pagination queryReply(Long commentId, Integer pageNumber, Integer pageSize) {
+		if(pageSize == null) {
+			pageSize = 10;
+		}
+		List<Reply> list = replyDao.queryReplyByCommentId(commentId, pageNumber, pageSize);
+		int totalCount = this.replyDao.queryCountByCommentId(commentId);
+		return new Pagination(pageNumber, pageSize, totalCount, list);
 	}
 
 }
