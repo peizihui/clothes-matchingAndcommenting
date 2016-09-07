@@ -73,7 +73,7 @@ public class ClothController {
 	
 	@RequestMapping(value="/index", method = RequestMethod.GET)
 	public String index() {
-		return "/cloth/upload";
+		return "/cloth/index";
 	}
 	
 	@RequestMapping(value="/list", method = RequestMethod.GET)

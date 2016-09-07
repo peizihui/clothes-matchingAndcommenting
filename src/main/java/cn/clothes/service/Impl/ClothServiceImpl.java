@@ -45,6 +45,9 @@ public class ClothServiceImpl implements ClothService{
 	
 	@Override
 	public void addCloth(MultipartFile file, String content, UploadResultBean bean, User user, String path) throws IOException {
+		if(content == null) {
+			content = "test";
+		}
 		//保存图片信息
 		BdbHtmlPoolServer instance = BdbHtmlPoolServer.getInstance();
 		String cloth_icon = UUID.randomUUID().toString();
@@ -69,7 +72,7 @@ public class ClothServiceImpl implements ClothService{
 		this.userDao.insertClothUser(clothUser);
 		
 		bean.setContent(content);
-		instance.close();
+		//instance.close();
 	}
 
 	@Override
